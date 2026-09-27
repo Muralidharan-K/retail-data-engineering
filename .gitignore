@@ -32,3 +32,4 @@ Thumbs.db
 # Generated project data
 data/raw/*.csv
 data/processed/*.csv
+data/test_data/*.csv
