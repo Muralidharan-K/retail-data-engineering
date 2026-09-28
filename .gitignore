@@ -33,3 +33,4 @@ Thumbs.db
 data/raw/*.csv
 data/processed/*.csv
 data/test_data/*.csv
+data/incremental/*.csv
