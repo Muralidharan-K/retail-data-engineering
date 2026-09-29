@@ -1,0 +1,9 @@
+SELECT
+    MD5(TO_VARCHAR(STORE_ID)) AS STORE_KEY,
+    STORE_ID,
+    STORE_NAME,
+    CITY,
+    STATE,
+    REGION,
+    STORE_TYPE
+FROM {{ ref('stg_stores') }}

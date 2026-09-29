@@ -20,3 +20,11 @@ models:
   retail_dbt:
     staging:
       +materialized: view
+
+    core:
+      +materialized: table
+      +schema: CORE
+
+      analytics:
+        +materialized: table
+        +schema: ANALYTICS

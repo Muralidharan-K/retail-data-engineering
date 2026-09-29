@@ -1,0 +1,11 @@
+SELECT
+    MD5(TO_VARCHAR(CUSTOMER_ID)) AS CUSTOMER_KEY,
+    CUSTOMER_ID,
+    CUSTOMER_NAME,
+    EMAIL,
+    PHONE,
+    CITY,
+    STATE,
+    COUNTRY,
+    REGISTRATION_DATE
+FROM {{ ref('stg_customers') }}

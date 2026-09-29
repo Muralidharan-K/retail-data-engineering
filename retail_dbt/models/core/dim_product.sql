@@ -1,0 +1,9 @@
+SELECT
+    MD5(TO_VARCHAR(PRODUCT_ID)) AS PRODUCT_KEY,
+    PRODUCT_ID,
+    PRODUCT_NAME,
+    CATEGORY,
+    SUBCATEGORY,
+    BRAND,
+    UNIT_PRICE
+FROM {{ ref('stg_products') }}
