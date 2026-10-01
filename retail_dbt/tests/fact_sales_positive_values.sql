@@ -1,0 +1,15 @@
+SELECT
+    SALES_KEY,
+    ORDER_ITEM_ID,
+    QUANTITY,
+    UNIT_PRICE,
+    DISCOUNT,
+    GROSS_AMOUNT,
+    NET_AMOUNT
+FROM {{ ref('fact_sales') }}
+WHERE
+       QUANTITY <= 0
+    OR UNIT_PRICE < 0
+    OR DISCOUNT_AMOUNT < 0
+    OR GROSS_AMOUNT < 0
+    OR NET_AMOUNT < 0

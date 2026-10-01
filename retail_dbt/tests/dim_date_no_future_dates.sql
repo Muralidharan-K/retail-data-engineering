@@ -1,0 +1,5 @@
+SELECT
+    DATE_KEY,
+    FULL_DATE
+FROM {{ ref('dim_date') }}
+WHERE FULL_DATE > CURRENT_DATE()
