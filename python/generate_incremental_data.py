@@ -53,9 +53,9 @@ def generate_daily_sales():
     product_ids = [row["product_id"] for row in products]
     store_ids = [row["store_id"] for row in stores]
 
-    start_date = datetime(2026, 9, 26)
+    start_date = datetime(2026, 9, 29)
 
-    for day_number in range(3):
+    for day_number in range(2):
 
         current_date = start_date + timedelta(days=day_number)
 
