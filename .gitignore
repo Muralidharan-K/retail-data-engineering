@@ -41,3 +41,6 @@ jenkins_profiles/
 
 # Airflow local/generated configuration
 airflow/config/
+
+# GitHub credentials / tokens
+docs/github_to_jenkins_token
