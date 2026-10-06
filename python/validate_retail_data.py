@@ -1,4 +1,5 @@
 import csv
+import argparse
 from pathlib import Path
 from collections import Counter
 
@@ -9,7 +10,7 @@ from collections import Counter
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-INPUT_FILE = (
+DEFAULT_INPUT_FILE = (
     PROJECT_ROOT
     / "data"
     / "test_data"
@@ -79,7 +80,7 @@ def load_ids(file_path, column_name):
 # Main DQ validation
 # =========================================================
 
-def validate_orders():
+def validate_orders(input_file):
 
     print("=" * 65)
     print("Retail Orders - Data Quality Validation")
@@ -91,10 +92,10 @@ def validate_orders():
     # Check input file
     # -----------------------------------------------------
 
-    if not INPUT_FILE.exists():
+    if not input_file.exists():
         raise FileNotFoundError(
-            f"Input file not found: {INPUT_FILE}"
-        )
+            f"Input file not found: {input_file}"
+    )
 
     # -----------------------------------------------------
     # Load reference IDs
@@ -120,7 +121,7 @@ def validate_orders():
     # -----------------------------------------------------
 
     with open(
-        INPUT_FILE,
+        input_file,
         "r",
         encoding="utf-8",
         newline=""
@@ -307,7 +308,7 @@ def validate_orders():
         "Retail Orders Data Quality Report",
         "=" * 45,
         "",
-        f"Input file              : {INPUT_FILE}",
+        f"Input file              : {input_file}",
         f"Total records           : {total_rows:,}",
         "",
         f"Extra duplicate rows    : {duplicate_row_count:,}",
@@ -353,7 +354,36 @@ def validate_orders():
     print(f"DQ report              : {REPORT_FILE}")
 
     print("=" * 65)
+    return dq_failed
 
 
 if __name__ == "__main__":
-    validate_orders()
+
+    parser = argparse.ArgumentParser(
+        description="Retail Orders Data Quality Validation"
+    )
+
+    parser.add_argument(
+        "--input",
+        type=str,
+        default=str(DEFAULT_INPUT_FILE),
+        help="Input orders CSV file"
+    )
+
+    parser.add_argument(
+        "--fail-on-error",
+        action="store_true",
+        help="Return exit code 1 when data quality validation fails"
+    )
+
+    args = parser.parse_args()
+
+    input_file = Path(args.input)
+
+    if not input_file.is_absolute():
+        input_file = PROJECT_ROOT / input_file
+
+    dq_failed = validate_orders(input_file)
+
+    if args.fail_on_error and dq_failed:
+        raise SystemExit(1)
