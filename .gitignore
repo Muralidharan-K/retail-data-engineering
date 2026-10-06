@@ -34,5 +34,10 @@ data/raw/*.csv
 data/processed/*.csv
 data/test_data/*.csv
 data/incremental/*.csv
-
 data/processed/*.txt
+
+# Jenkins local configuration
+jenkins_profiles/
+
+# Airflow local/generated configuration
+airflow/config/
