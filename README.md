@@ -27,3 +27,5 @@ GitHub and Power BI.
 ## Project Status
 
 Phase 1 - Project Setup
+
+Jenkins automatic CI trigger test.
