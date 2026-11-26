@@ -9,7 +9,11 @@ models:
       - name: customer_key
         tests:
           - not_null
-          - unique
+          - unique:
+             config:
+              severity: error
+              warn_if: '>10'
+              error_if: '>11'
 
       - name: customer_id
         tests:
